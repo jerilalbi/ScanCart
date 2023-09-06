@@ -9,7 +9,7 @@ Widget ProductCard(){
   margin: const EdgeInsets.symmetric(horizontal: 8),
   decoration: const BoxDecoration(
     borderRadius: BorderRadius.all(Radius.circular(10)),
-    color: Colors.blue
+    color: Colors.black
   ),
  );
 }

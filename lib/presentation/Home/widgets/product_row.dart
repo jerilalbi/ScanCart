@@ -2,8 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:scancart/core/constant.dart';
 import 'package:scancart/core/fonts/fonts.dart';
-import 'package:scancart/presentation/widgets/product_card.dart';
+import 'package:scancart/presentation/widgets/Product/product_card.dart';
 
 Widget ProductRow(BuildContext context,String title){
   return SizedBox(
@@ -12,11 +13,11 @@ Widget ProductRow(BuildContext context,String title){
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(basePadding),
           child: Text(title,style: GoogleFonts.getFont(remainFontFamily,textStyle: const TextStyle(fontSize: headingFontSize,fontWeight: FontWeight.bold)),),
         ),
         Padding(
-          padding:const EdgeInsets.only(bottom: 8),
+          padding:const EdgeInsets.only(bottom: basePadding),
           child: SizedBox(
             height: 160,
             width: MediaQuery.of(context).size.width,

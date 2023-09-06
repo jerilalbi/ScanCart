@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:scancart/presentation/widgets/ad_slider.dart';
-import 'package:scancart/presentation/widgets/app_bar.dart';
-import 'package:scancart/presentation/widgets/product_row.dart';
+import 'package:scancart/presentation/Home/widgets/ad_slider.dart';
+import 'package:scancart/presentation/Home/widgets/product_row.dart';
+import 'package:scancart/presentation/widgets/Appbar/app_bar.dart';
 
 class HomePage extends StatelessWidget {
    HomePage({super.key});
