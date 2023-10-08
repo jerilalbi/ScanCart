@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:scancart/presentation/Home/widgets/ad_slider.dart';
-import 'package:scancart/presentation/Home/widgets/product_row.dart';
+import 'package:scancart/core/colors/colors.dart';
+import 'package:scancart/presentation/Home/widgets/Ad_slider.dart';
+import 'package:scancart/presentation/Home/widgets/Product_row.dart';
 import 'package:scancart/presentation/widgets/Appbar/app_bar.dart';
 
 class HomePage extends StatelessWidget {
+  static String routeName = "home";
    HomePage({super.key});
 
  final List ads = [
@@ -15,13 +17,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppHeader(),
+      backgroundColor: scaffoldColor,
+      appBar: AppHeader(context),
       body: ListView(
         children: [
-          AdSlider(context,ads),
-          ProductRow(context,"Newly Added"),
-          ProductRow(context,"Popular"),
-          ProductRow(context,"Top Rated"),
+          AdSlider(ads: ads),
+         const ProductRow(title: "Newly Added"),
+         const ProductRow(title: "Popular"),
+         const ProductRow(title: "Top Rated"),
         ],
       ),
     );
