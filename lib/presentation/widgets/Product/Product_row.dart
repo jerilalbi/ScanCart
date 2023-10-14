@@ -24,13 +24,12 @@ class ProductRow extends StatelessWidget {
         Padding(
           padding:const EdgeInsets.only(bottom: basePadding),
           child: SizedBox(
-            height: 160,
+            height: 200,
             width: MediaQuery.of(context).size.width,
             child: ListView.builder(
-              shrinkWrap: false,
               scrollDirection: Axis.horizontal,
               itemCount: 6,
-              itemBuilder: (context,i) { 
+              itemBuilder: (context,i) {
                 return InkWell(
                   onTap: () => Navigator.pushNamed(context, ProductScreen.routeName),
                   child: ProductCard());}),

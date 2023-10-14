@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scancart/core/colors/colors.dart';
+import 'package:scancart/presentation/Cart/cart_page.dart';
 import 'package:scancart/presentation/Product/widgets/circle_cart_button.dart';
 import 'package:scancart/presentation/Product/widgets/product_details_box.dart';
 import 'package:scancart/presentation/Product/widgets/product_image_slider.dart';
@@ -26,7 +27,7 @@ class ProductScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  CircleCartButton(onTap: (){}),
+                  CircleCartButton(onTap: ()=> Navigator.pushNamed(context, CartPage.routeName)),
                   ScanButton(onTap: ()=> Navigator.pushNamed(context, ScanPage.routeName))
                 ],
               ),

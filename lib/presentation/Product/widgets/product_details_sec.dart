@@ -25,7 +25,7 @@ class ProductDetailsSec extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(6)),
                         color: secondaryColor,
                       ),
-                      child: Text("FASHION",style: GoogleFonts.getFont(baseFont,color: mainLogoColor,fontSize: smallFontSize,fontWeight: FontWeight.bold),),
+                      child: Text("SPORTS",style: GoogleFonts.getFont(baseFont,color: mainLogoColor,fontSize: smallFontSize,fontWeight: FontWeight.bold),),
                     )
                   ],
                 ),

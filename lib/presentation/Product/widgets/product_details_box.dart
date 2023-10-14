@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scancart/core/colors/colors.dart';
 import 'package:scancart/core/constant.dart';
-import 'package:scancart/presentation/Home/widgets/Product_row.dart';
+import 'package:scancart/presentation/widgets/Product/Product_row.dart';
 import 'package:scancart/presentation/Product/widgets/product_details_sec.dart';
 
 class ProductDescription extends StatelessWidget {
