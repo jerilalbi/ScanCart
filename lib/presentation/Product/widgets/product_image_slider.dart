@@ -18,7 +18,10 @@ class ProductImageSlider extends StatelessWidget {
           options: CarouselOptions(
           height: MediaQuery.of(context).size.height*.5,
           viewportFraction: 1,
-          enableInfiniteScroll: false
+          enableInfiniteScroll: false,
+          onScrolled: (value){
+            print(value!.toInt());
+          }
           ),
           items: images.map((img) => SizedBox(
             width: MediaQuery.of(context).size.width,

@@ -1,5 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scancart/application/bloc/Camera/camera_bloc.dart';
 import 'package:scancart/core/colors/colors.dart';
 import 'package:scancart/infrastructure/services/camera_service.dart';
 
@@ -11,65 +13,50 @@ class ScanPage extends StatefulWidget {
   State<ScanPage> createState() => _ScanPageState();
 }
 
-class _ScanPageState extends State<ScanPage> {
-late CameraController controller;
-
-void didChangeAppLifecycleState(AppLifecycleState state) {
-  final CameraController? cameraController = controller;
-  if (cameraController == null || !cameraController.value.isInitialized) {
-    return;
-  }
-
-  if (state == AppLifecycleState.inactive) {
-    cameraController.dispose();
-  } else if (state == AppLifecycleState.resumed) {
-    initializeCameraController();
-  }
-}
-
-void initializeCameraController(){
-  controller = CameraController(cameras[0],ResolutionPreset.max);
-  controller.initialize().then((_) {
-      if (!mounted) {
-        return;
-      }
-      setState(() {});
-    }).catchError((Object e) {
-      if (e is CameraException) {
-        switch (e.code) {
-          case 'CameraAccessDenied':
-            break;
-          default:
-            break;
-        }
-      }
-    });
-}
-
-@override
-  void initState() {
-    super.initState();
-    initializeCameraController();
-  }
+class _ScanPageState extends State<ScanPage> with WidgetsBindingObserver {
 
   @override
-  void dispose() {
-    super.dispose();
-    controller.dispose();
+  void initState() {
+    super.initState();
+    context.read<CameraBloc>().add(InitializeCamera());
+  }
+  
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    final bloc = BlocProvider.of<CameraBloc>(context);
+    if (!bloc.state.cameraController!.value.isInitialized) return;
+
+    if (state == AppLifecycleState.inactive){
+      bloc.add(DisposeCamera());
+    }
+
+    else if (state == AppLifecycleState.resumed) {
+      bloc.add(InitializeCamera());
+      }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: tertiaryColor,
-      body: Center(
-        child: Container(
-          height: MediaQuery.of(context).size.height *.4,
-          width: MediaQuery.of(context).size.width*.8,
-          color: primaryColor,
-          child: CameraPreview(controller),
-        ),
-      ),
+    return BlocConsumer<CameraBloc, CameraState>(
+      listener: (context, state) {
+        
+      },
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: tertiaryColor,
+          body: Center(
+            child: Container(
+              height: MediaQuery.of(context).size.height * .4,
+              width: MediaQuery.of(context).size.width * .8,
+              color: primaryColor,
+              child: BlocBuilder<CameraBloc, CameraState>(
+                builder: (context, state) {
+                  return CameraPreview( state.isCameraInitialize! ? state.cameraController! : CameraController(cameras[0], ResolutionPreset.max));
+                },
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

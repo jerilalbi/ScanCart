@@ -14,7 +14,7 @@ class _SlideAnimationState extends State<SlideAnimation> with SingleTickerProvid
   Widget build(BuildContext context) {
     return TweenAnimationBuilder(
       tween: Tween<Offset>(begin: const Offset(-1, 0),end: Offset.zero), 
-      duration: const Duration(seconds: 1),
+      duration: const Duration(milliseconds: 700),
       builder: (context,offset,child)=> 
       FractionalTranslation(translation: offset,child: widget.child,));
   }

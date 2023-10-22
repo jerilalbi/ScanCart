@@ -13,7 +13,9 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: scaffoldColor,
-      appBar: AppHeader(context: context,isHomePage: false),
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(60),
+        child: AppHeader(isHomePage: false)),
       body: Padding(
         padding: const EdgeInsets.all(basePadding),
         child: Stack(

@@ -1,5 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scancart/application/bloc/Camera/camera_bloc.dart';
+import 'package:scancart/application/bloc/Search/search_bloc.dart';
 import 'package:scancart/core/colors/colors.dart';
 import 'package:scancart/core/constant.dart';
 import 'package:scancart/core/routes/routes.dart';
@@ -17,15 +20,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: appName,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: primaryColor),
-        useMaterial3: true,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => SearchBloc()),
+        BlocProvider(create: (context) => CameraBloc()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: appName,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: primaryColor),
+          useMaterial3: true,
+        ),
+        initialRoute: HomePage.routeName,
+        routes: routes,
       ),
-      initialRoute: HomePage.routeName,
-      routes: routes,
     );
   }
 }

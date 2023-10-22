@@ -3,7 +3,6 @@ import 'package:scancart/core/colors/colors.dart';
 import 'package:scancart/presentation/Home/widgets/Ad_slider.dart';
 import 'package:scancart/presentation/widgets/Product/Product_row.dart';
 import 'package:scancart/presentation/widgets/Appbar/app_bar.dart';
-import 'package:scancart/presentation/widgets/Product/product_card.dart';
 
 class HomePage extends StatelessWidget {
   static String routeName = "home";
@@ -19,7 +18,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: scaffoldColor,
-      appBar: AppHeader(context: context,isHomePage: true),
+      appBar: const PreferredSize(
+        preferredSize:  Size.fromHeight(60),
+        child: AppHeader(isHomePage: true)),
       body: ListView(
         children: [
           AdSlider(ads: ads),
