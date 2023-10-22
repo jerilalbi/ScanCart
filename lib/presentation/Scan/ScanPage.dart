@@ -1,62 +1,39 @@
-import 'package:camera/camera.dart';
+import 'package:ai_barcode_scanner/ai_barcode_scanner.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scancart/application/bloc/Camera/camera_bloc.dart';
 import 'package:scancart/core/colors/colors.dart';
-import 'package:scancart/infrastructure/services/camera_service.dart';
 
-class ScanPage extends StatefulWidget {
+class ScanPage extends StatelessWidget {
   static String routeName = "scan";
   const ScanPage({super.key});
 
-  @override
-  State<ScanPage> createState() => _ScanPageState();
-}
-
-class _ScanPageState extends State<ScanPage> with WidgetsBindingObserver {
-
-  @override
-  void initState() {
-    super.initState();
-    context.read<CameraBloc>().add(InitializeCamera());
+  bool isNumeric(String str) {
+    RegExp _numeric = RegExp(r'^-?[0-9]+$');
+    return _numeric.hasMatch(str);
   }
-  
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    final bloc = BlocProvider.of<CameraBloc>(context);
-    if (!bloc.state.cameraController!.value.isInitialized) return;
-
-    if (state == AppLifecycleState.inactive){
-      bloc.add(DisposeCamera());
-    }
-
-    else if (state == AppLifecycleState.resumed) {
-      bloc.add(InitializeCamera());
-      }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<CameraBloc, CameraState>(
-      listener: (context, state) {
-        
-      },
-      builder: (context, state) {
-        return Scaffold(
+    return Scaffold(
           backgroundColor: tertiaryColor,
           body: Center(
             child: Container(
               height: MediaQuery.of(context).size.height * .4,
               width: MediaQuery.of(context).size.width * .8,
               color: primaryColor,
-              child: BlocBuilder<CameraBloc, CameraState>(
-                builder: (context, state) {
-                  return CameraPreview( state.isCameraInitialize! ? state.cameraController! : CameraController(cameras[0], ResolutionPreset.max));
-                },
-              ),
+              child: MobileScanner(
+                  controller: MobileScannerController(
+                      torchEnabled: false,
+                      facing: CameraFacing.back,
+                      detectionSpeed: DetectionSpeed.normal),
+                  onDetect: (onDetect) {
+                    final List<Barcode> barcodes = onDetect.barcodes;
+                    for (final barcode in barcodes) {
+                      if(isNumeric(barcode.rawValue.toString())){
+                        print('Barcode found! ${barcode.displayValue}');
+                      }
+                    }
+                  }),
             ),
           ),
         );
-      },
-    );
   }
 }

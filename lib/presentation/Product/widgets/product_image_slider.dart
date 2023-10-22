@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scancart/application/bloc/Image/image_bloc.dart';
 import 'package:scancart/core/colors/colors.dart';
 
 class ProductImageSlider extends StatelessWidget {
@@ -8,7 +10,6 @@ class ProductImageSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int currentIndex = 0;
     return Container(
       height: MediaQuery.of(context).size.height*.5,
       color: secondaryColor,
@@ -20,7 +21,7 @@ class ProductImageSlider extends StatelessWidget {
           viewportFraction: 1,
           enableInfiniteScroll: false,
           onScrolled: (value){
-            print(value!.toInt());
+            context.read<ImageBloc>().add(ChangeImageIndex(index: value!.toInt()));
           }
           ),
           items: images.map((img) => SizedBox(
@@ -34,14 +35,18 @@ class ProductImageSlider extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               for(int i = 0; i < images.length; i++)
-              Container(
-                width: 10,
-                height: 10,
-                margin: EdgeInsets.only(right: 4,bottom: MediaQuery.of(context).size.height*.03),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  color: i == currentIndex ? primaryColor : Colors.grey,
-                ),
+              BlocBuilder<ImageBloc, ImageState>(
+                builder: (context, state) {
+                  return Container(
+                              width: 10,
+                              height: 10,
+                              margin: EdgeInsets.only(right: 4,bottom: MediaQuery.of(context).size.height*.03),
+                              decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.all(Radius.circular(10)),
+                                color: i == state.index ? primaryColor : Colors.grey,
+                              ),
+                            );
+                },
               )
             ],
           ),
