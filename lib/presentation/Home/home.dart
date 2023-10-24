@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:scancart/core/colors/colors.dart';
 import 'package:scancart/domain/models/AdsModel.dart';
+import 'package:scancart/domain/models/ProductModel.dart';
 import 'package:scancart/infrastructure/services/AdsServices.dart';
+import 'package:scancart/infrastructure/services/ProductServices.dart';
 import 'package:scancart/presentation/Home/widgets/Ad_slider.dart';
 import 'package:scancart/presentation/widgets/Product/Product_row.dart';
 import 'package:scancart/presentation/widgets/Appbar/app_bar.dart';
@@ -31,9 +33,28 @@ class HomePage extends StatelessWidget {
               }
             }
           ),
-         const ProductRow(title: "Newly Added"),
-         const ProductRow(title: "Popular"),
-         const ProductRow(title: "Top Rated"),
+         FutureBuilder(
+          future: getNewlyAddedProduct(),
+           builder: (context,AsyncSnapshot<List<ProductModel>> snapshot) {
+            if(snapshot.hasData){
+              return ProductRow(title: "Newly Added",products: snapshot.data!,);
+            }else{
+              return const CircularProgressIndicator();
+            }
+           }
+         ),
+         FutureBuilder(
+          future: getPopularProduct(),
+           builder: (context,AsyncSnapshot<List<ProductModel>> snapshot) {
+            if(snapshot.hasData){
+              return ProductRow(title: "Popular",products: snapshot.data!,);
+            }else{
+              return const CircularProgressIndicator();
+            }
+           }
+         ),
+        //  const ProductRow(title: "Popular"),
+        //  const ProductRow(title: "Top Rated"),
         ],
       ),
     );

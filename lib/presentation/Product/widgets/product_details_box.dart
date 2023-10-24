@@ -5,7 +5,17 @@ import 'package:scancart/presentation/widgets/Product/Product_row.dart';
 import 'package:scancart/presentation/Product/widgets/product_details_sec.dart';
 
 class ProductDescription extends StatelessWidget {
-  const ProductDescription({super.key});
+  final String productName;
+  final String productBrand;
+  final String productCategory;
+  final int productPrice;
+
+  const ProductDescription({
+    required this.productName,
+    required this.productBrand,
+    required this.productCategory,
+    required this.productPrice,
+    super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +31,8 @@ class ProductDescription extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children:  [
-           ProductDetailsSec(),
-           ProductRow(title: "Recommended"),
+           ProductDetailsSec(productName: productName,productBrand: productBrand,productCategory: productCategory,productPrice: productPrice,),
+          //  ProductRow(title: "Recommended"),
             SizedBox(
               height: 60,
             )

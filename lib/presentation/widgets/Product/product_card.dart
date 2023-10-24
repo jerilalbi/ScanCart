@@ -7,7 +7,9 @@ import 'package:scancart/core/constant.dart';
 import 'package:scancart/core/fonts/fonts.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  final String productCover;
+  final String productName;
+  const ProductCard({required this.productCover, required this.productName, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +30,16 @@ class ProductCard extends StatelessWidget {
           Container(
             height: 150,
             width: 140,
-            decoration: const BoxDecoration(
+            decoration:  BoxDecoration(
                 image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFa7HJu-yZe8RCOI2QLkZATOqgGIiWO6V2vjr_XP5wqo-v_7ogEplhKmn0Fy3b90gkNA4&usqp=CAU")),
+                        productCover)),
                 color: secondaryColor,
               ),
             margin: const EdgeInsets.only(bottom: verySmallPadding),
           ),
-          Flexible(child: Text("Liverpool Jersey",style: GoogleFonts.getFont(baseFont,fontSize: smallFontSize),overflow: TextOverflow.ellipsis,))
+          Flexible(child: Text(productName,style: GoogleFonts.getFont(baseFont,fontSize: smallFontSize),overflow: TextOverflow.ellipsis,))
         ],
       ),
     );
