@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "687451429556",
+    "project_id": "scancart-6a935",
+    "storage_bucket": "scancart-6a935.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687451429556:android:455466a09ad7f2108c55e1",
+        "android_client_info": {
+          "package_name": "com.jerilalbi.scancart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAk2gk56CCLXl98Y9BHbpZ36FGrppAqGX4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

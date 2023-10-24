@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:ai_barcode_scanner/ai_barcode_scanner.dart';
 import 'package:flutter/material.dart';
 import 'package:scancart/core/colors/colors.dart';
@@ -10,6 +12,7 @@ class ScanPage extends StatelessWidget {
     RegExp _numeric = RegExp(r'^-?[0-9]+$');
     return _numeric.hasMatch(str);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

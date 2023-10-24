@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scancart/application/bloc/Image/image_bloc.dart';
@@ -5,10 +6,14 @@ import 'package:scancart/application/bloc/Search/search_bloc.dart';
 import 'package:scancart/core/colors/colors.dart';
 import 'package:scancart/core/constant.dart';
 import 'package:scancart/core/routes/routes.dart';
+import 'package:scancart/firebase_options.dart';
 import 'package:scancart/presentation/Home/home.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform
+  );
   runApp(const MyApp());
 }
 

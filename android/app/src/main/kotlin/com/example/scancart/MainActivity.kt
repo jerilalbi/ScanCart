@@ -1,4 +1,4 @@
-package com.example.scancart
+package com.jerilalbi.scancart
 
 import io.flutter.embedding.android.FlutterActivity
 
