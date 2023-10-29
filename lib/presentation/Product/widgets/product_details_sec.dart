@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scancart/core/colors/colors.dart';
 import 'package:scancart/core/fonts/fonts.dart';
+import 'package:scancart/infrastructure/services/CommonServies.dart';
 
 class ProductDetailsSec extends StatelessWidget {
   final String productName;
@@ -24,7 +25,7 @@ class ProductDetailsSec extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(productName,style: GoogleFonts.getFont(baseFont,textStyle: const TextStyle(fontSize: veryBigFontSize,fontWeight: mediumFontWeight)),),
+                    Text(productName.capitalizeFirst(),style: GoogleFonts.getFont(baseFont,textStyle: const TextStyle(fontSize: veryBigFontSize,fontWeight: mediumFontWeight)),),
                     Text(productBrand,style: GoogleFonts.getFont(baseFont,textStyle: TextStyle(fontSize: bigFontSize,fontWeight: mediumFontWeight,color: mainTextColor.withOpacity(.6))),),
                     Container(
                       height: 40,

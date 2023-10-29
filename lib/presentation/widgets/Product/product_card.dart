@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:scancart/core/colors/colors.dart';
 import 'package:scancart/core/constant.dart';
 import 'package:scancart/core/fonts/fonts.dart';
+import 'package:scancart/infrastructure/services/CommonServies.dart';
 
 class ProductCard extends StatelessWidget {
   final String productCover;
@@ -39,7 +40,7 @@ class ProductCard extends StatelessWidget {
               ),
             margin: const EdgeInsets.only(bottom: verySmallPadding),
           ),
-          Flexible(child: Text(productName,style: GoogleFonts.getFont(baseFont,fontSize: smallFontSize),overflow: TextOverflow.ellipsis,))
+          Flexible(child: Text(productName.capitalizeFirst(),style: GoogleFonts.getFont(baseFont,fontSize: smallFontSize),overflow: TextOverflow.ellipsis,))
         ],
       ),
     );

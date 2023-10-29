@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scancart/core/colors/colors.dart';
 import 'package:scancart/core/constant.dart';
+import 'package:scancart/domain/models/ProductModel.dart';
+import 'package:scancart/infrastructure/services/ProductServices.dart';
 import 'package:scancart/presentation/widgets/Product/Product_row.dart';
 import 'package:scancart/presentation/Product/widgets/product_details_sec.dart';
 
@@ -32,7 +34,16 @@ class ProductDescription extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children:  [
            ProductDetailsSec(productName: productName,productBrand: productBrand,productCategory: productCategory,productPrice: productPrice,),
-          //  ProductRow(title: "Recommended"),
+           FutureBuilder(
+          future: getCategoryProduct(productCategory),
+           builder: (context,AsyncSnapshot<List<ProductModel>> snapshot) {
+            if(snapshot.hasData){
+              return ProductRow(title: "Recommended",products: snapshot.data!,);
+            }else{
+              return const CircularProgressIndicator();
+            }
+           }
+         ),
             SizedBox(
               height: 60,
             )

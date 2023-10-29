@@ -41,6 +41,7 @@ dependencies:
   ai_barcode_scanner:
   cloud_firestore: ^4.11.0
   firebase_core: ^2.19.0
+  flutter_typeahead: ^4.8.0
 
 dev_dependencies:
   flutter_test:

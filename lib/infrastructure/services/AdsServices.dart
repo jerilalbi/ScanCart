@@ -11,3 +11,14 @@ Future<List<AdsModel>> getAdImages() async {
   }
   throw Exception();
 }
+
+Future<String> getPromotingCategory() async {
+  try{
+    QuerySnapshot<Map<String,dynamic>> snapshot = await firebase.collection("categories").get();
+      String data = snapshot.docs[0]["promoting_category"];
+      return data;
+  }catch (e){
+    print(e);
+  }
+  throw Exception();
+}
