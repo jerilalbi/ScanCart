@@ -1,10 +1,11 @@
 part of 'cart_bloc.dart';
 
 class CartState {
-  final List? cartItems;
-  CartState({this.cartItems});
+  List<CartModel>? cartItems = [];
+  int totalPrice = 0;
+  CartState({required this.cartItems,required this.totalPrice});
 }
 
 final class CartInitial extends CartState {
-  CartInitial(): super(cartItems: []);
+  CartInitial(): super(cartItems: [],totalPrice: 0);
 }

@@ -5,16 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scancart/application/bloc/Cart/cart_bloc.dart';
 import 'package:scancart/core/colors/colors.dart';
+import 'package:scancart/domain/models/CartModel.dart';
+import 'package:scancart/infrastructure/services/CommonServies.dart';
+import 'package:scancart/infrastructure/services/ScanServices.dart';
 import 'package:scancart/presentation/widgets/Cart/CartOverlay.dart';
 
 class ScanPage extends StatelessWidget {
   static String routeName = "scan";
   const ScanPage({super.key});
-
-  bool isNumeric(String str) {
-    RegExp _numeric = RegExp(r'^-?[0-9]+$');
-    return _numeric.hasMatch(str);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +29,18 @@ class ScanPage extends StatelessWidget {
                   controller: MobileScannerController(
                       torchEnabled: false,
                       facing: CameraFacing.back,
+                      detectionTimeoutMs: 2500,
                       detectionSpeed: DetectionSpeed.normal),
-                  onDetect: (onDetect) {
+                  onDetect: (onDetect) async{
                     final List<Barcode> barcodes = onDetect.barcodes;
                     for (final barcode in barcodes) {
-                      if (isNumeric(barcode.rawValue.toString())) {
+                      if (isNumeric(barcode.rawValue.toString())){
                         print('Barcode found! ${barcode.displayValue}');
+                        CartModel cartItem = await scanProduct(int.parse(barcode.displayValue!));
+                        if(cartItem.name.isNotEmpty){
+                          context.read<CartBloc>().add(AddToCart(cartModel: cartItem));
+                          showToast("Product Added");
+                        }
                       }
                     }
                   }),

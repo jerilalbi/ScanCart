@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:scancart/application/bloc/Cart/cart_bloc.dart';
 import 'package:scancart/core/colors/colors.dart';
 import 'package:scancart/core/constant.dart';
 import 'package:scancart/core/fonts/fonts.dart';
@@ -14,16 +16,25 @@ class CartBottomButton extends StatelessWidget {
       height: 60,
       padding: const EdgeInsets.all(basePadding),
       decoration: const BoxDecoration(
-        boxShadow: [
-          BoxShadow(color: scaffoldColor,spreadRadius: 3,blurRadius: 3)
-        ],
-        color: primaryColor,
-        borderRadius: BorderRadius.all(Radius.circular(smallBorderRadius))
-      ),
+          boxShadow: [
+            BoxShadow(color: scaffoldColor, spreadRadius: 3, blurRadius: 3)
+          ],
+          color: primaryColor,
+          borderRadius: BorderRadius.all(Radius.circular(smallBorderRadius))),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text("Total: 15400",style: GoogleFonts.getFont(baseFont,color: mainLogoColor,fontSize: bigFontSize,fontWeight: mediumFontWeight),),
+          BlocBuilder<CartBloc, CartState>(
+            builder: (context, state) {
+              return Text(
+                "Total: ₹ ${state.totalPrice}",
+                style: GoogleFonts.getFont(baseFont,
+                    color: mainLogoColor,
+                    fontSize: bigFontSize,
+                    fontWeight: mediumFontWeight),
+              );
+            },
+          ),
           const Spacer(),
           Container(
             width: 150,
@@ -31,12 +42,19 @@ class CartBottomButton extends StatelessWidget {
             alignment: Alignment.center,
             decoration: const BoxDecoration(
               color: secondaryColor,
-              borderRadius: BorderRadius.all(Radius.circular(smallBorderRadius)),
+              borderRadius:
+                  BorderRadius.all(Radius.circular(smallBorderRadius)),
               boxShadow: [
-                  BoxShadow(color: scaffoldColor,spreadRadius: 1,blurRadius: 3)
+                BoxShadow(color: scaffoldColor, spreadRadius: 1, blurRadius: 3)
               ],
             ),
-            child: Text("PROCEED",style: GoogleFonts.getFont(baseFont,color: mainLogoColor,fontSize: bigFontSize,fontWeight: mediumFontWeight),),
+            child: Text(
+              "PROCEED",
+              style: GoogleFonts.getFont(baseFont,
+                  color: mainLogoColor,
+                  fontSize: bigFontSize,
+                  fontWeight: mediumFontWeight),
+            ),
           )
         ],
       ),

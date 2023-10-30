@@ -9,16 +9,19 @@ class CartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      margin: const EdgeInsets.only(right: 5),
-      height: 30,
-      width: 30,
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(5)),
-        color: color
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        alignment: Alignment.center,
+        margin: const EdgeInsets.only(right: 5),
+        height: 30,
+        width: 30,
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(5)),
+          color: color
+        ),
+        child: Icon(icon,color: mainLogoColor,),
       ),
-      child: Icon(icon,color: mainLogoColor,),
     );
   }
 }

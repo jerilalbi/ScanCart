@@ -4,7 +4,7 @@ import 'package:scancart/infrastructure/firebase/firebase.dart';
 
 Future<List<ProductModel>> getNewlyAddedProduct() async{
   try{
-    QuerySnapshot<Map<String,dynamic>> snapshot = await firebase.collection("products").get();
+    QuerySnapshot<Map<String,dynamic>> snapshot = await firebase.collection("products").limit(10).get();
     return snapshot.docs.map((json) => ProductModel.fromJson(json)).toList();
   }catch (e){
     print(e);
@@ -14,7 +14,7 @@ Future<List<ProductModel>> getNewlyAddedProduct() async{
 
 Future<List<ProductModel>> getPopularProduct() async{
   try{
-    QuerySnapshot<Map<String,dynamic>> snapshot = await firebase.collection("products").orderBy("purchased",descending: true).get();
+    QuerySnapshot<Map<String,dynamic>> snapshot = await firebase.collection("products").orderBy("purchased",descending: true).limit(10).get();
     return snapshot.docs.map((json) => ProductModel.fromJson(json)).toList();
   }catch (e){
     print(e);
@@ -24,7 +24,7 @@ Future<List<ProductModel>> getPopularProduct() async{
 
 Future<List<ProductModel>> getCategoryProduct(String category) async{
   try{
-    QuerySnapshot<Map<String,dynamic>> snapshot = await firebase.collection("products").where("category",isEqualTo: category).orderBy("purchased").get();
+    QuerySnapshot<Map<String,dynamic>> snapshot = await firebase.collection("products").where("category",isEqualTo: category).orderBy("purchased").limit(10).get();
     return snapshot.docs.map((json) => ProductModel.fromJson(json)).toList();
   }catch (e){
     print(e);
