@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                   }),
               BlocBuilder<CartBloc,CartState>(
                 builder: (context,state){
-                  return state.cartItems!.isNotEmpty 
+                  return state.cartItems.isNotEmpty 
                   ? const SizedBox(height: 70,)
                   : const SizedBox(height: 0,);
                 })
@@ -111,7 +111,7 @@ class _HomePageState extends State<HomePage> {
           ),
           BlocBuilder<CartBloc, CartState>(
             builder: (context, state) {
-              return state.cartItems!.isNotEmpty ? const Align(
+              return state.cartItems.isNotEmpty ? const Align(
                   alignment: Alignment.bottomCenter,
                   child: CartOverlay()
                 ) : const SizedBox(height: 0,);

@@ -80,7 +80,7 @@ class CartTile extends StatelessWidget {
                 context.read<CartBloc>().add(RemoveFromCart(index: index));
               }, icon: const Icon(Icons.delete_outlined,color: dangerColor,size: largeFontSize,)),
               const SizedBox(height: 15,),
-              Text("₹ ${ cartItem!.totalPrice == 0 ? cartItem!.price : cartItem!.totalPrice}",style: GoogleFonts.getFont(baseFont,fontSize: mediumFontSize,color: mainLogoColor,fontWeight: mediumFontWeight),)
+              Text("₹ ${cartItem!.totalPrice}",style: GoogleFonts.getFont(baseFont,fontSize: mediumFontSize,color: mainLogoColor,fontWeight: mediumFontWeight),)
             ],
           )
         ]),

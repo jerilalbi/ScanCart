@@ -12,7 +12,7 @@ class CartModel {
     int price;
     int purchased;
     int quantity = 1;
-    int totalPrice = 0;
+    int? totalPrice;
     String coverImage;
 
     CartModel({
@@ -21,6 +21,7 @@ class CartModel {
         required this.price,
         required this.purchased,
         required this.coverImage,
+        this.totalPrice,
     });
 
     factory CartModel.fromJson(DocumentSnapshot<Map<String, dynamic>> json) => CartModel(
@@ -29,5 +30,6 @@ class CartModel {
         price: json["price"],
         purchased: json["purchased"],
         coverImage: json["cover_image"],
+        totalPrice: json["price"],
     );
 }

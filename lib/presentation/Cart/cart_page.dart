@@ -24,13 +24,13 @@ class CartPage extends StatelessWidget {
         padding: const EdgeInsets.all(basePadding),
         child: BlocBuilder<CartBloc, CartState>(
           builder: (context, state) {
-           return state.cartItems!.isNotEmpty ?
+           return state.cartItems.isNotEmpty ?
               Stack(
               children: [
                 ListView.builder(
-                    itemCount: state.cartItems!.length,
+                    itemCount: state.cartItems.length,
                     itemBuilder: (context, index) => CartTile(
-                          cartItem: state.cartItems![index],
+                          cartItem: state.cartItems[index],
                           index: index,
                         )),
                 const Positioned(bottom: 5, child: CartBottomButton())

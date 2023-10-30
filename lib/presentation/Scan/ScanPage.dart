@@ -48,7 +48,7 @@ class ScanPage extends StatelessWidget {
           ),
           BlocBuilder<CartBloc, CartState>(
             builder: (context, state) {
-              return state.cartItems!.isNotEmpty
+              return state.cartItems.isNotEmpty
                   ? const Align(
                       alignment: Alignment.bottomCenter, child: CartOverlay())
                   : const SizedBox(
