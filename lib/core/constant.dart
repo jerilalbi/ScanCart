@@ -5,4 +5,6 @@ const double bigPadding = 12;
 const double veryBigPadding = 16;
 const double verySmallBorderRadius = 5;
 const double smallBorderRadius = 10;
+const double mediumBorderRadius = 15;
 const double bigBorderRadius = 20;
+const double veryBigBorderRadius = 35;

@@ -110,3 +110,20 @@ class AppHeader extends StatelessWidget {
     );
   }
 }
+
+
+class ScreenAppBar extends StatelessWidget {
+  final String title;
+  final bool isCenter;
+  const ScreenAppBar({required this.title, required this.isCenter, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      centerTitle: isCenter,
+      title: Text(title,style: GoogleFonts.getFont(baseFont,fontSize: bigFontSize,fontWeight: mediumFontWeight,color: mainLogoColor),),
+      backgroundColor: primaryColor,
+      automaticallyImplyLeading: false,
+    );
+  }
+}
