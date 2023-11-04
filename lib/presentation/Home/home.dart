@@ -12,19 +12,9 @@ import 'package:scancart/presentation/widgets/Cart/CartOverlay.dart';
 import 'package:scancart/presentation/widgets/Product/Product_row.dart';
 import 'package:scancart/presentation/widgets/Appbar/app_bar.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   static String routeName = "home";
   const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
