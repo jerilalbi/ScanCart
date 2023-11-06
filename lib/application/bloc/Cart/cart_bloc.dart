@@ -31,7 +31,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       state.cartItems[event.index].totalPrice = state.cartItems[event.index].price * state.cartItems[event.index].quantity;
       state.totalPrice -= state.cartItems[event.index].price;
       if(state.cartItems[event.index].quantity < 1){
-        state.totalPrice -= state.cartItems[event.index].price;
         state.cartItems.removeAt(event.index);
       }
       emit(CartState(cartItems: state.cartItems,totalPrice: state.totalPrice));

@@ -24,7 +24,7 @@ class PaymentBottomBtn extends StatelessWidget {
       child: Row(
         children: [
           InkWell(
-            onTap: () => Navigator.pushNamed(context, CartPage.routeName),
+            onTap: () => Navigator.pushReplacementNamed(context, CartPage.routeName),
             child: Container(
               width: 150,
               height: 50,

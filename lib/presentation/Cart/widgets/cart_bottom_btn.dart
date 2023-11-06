@@ -38,7 +38,7 @@ class CartBottomButton extends StatelessWidget {
           ),
           const Spacer(),
           InkWell(
-            onTap: () => Navigator.pushNamed(context, PaymentPage.routeName),
+            onTap: () => Navigator.pushReplacementNamed(context, PaymentPage.routeName),
             child: Container(
               width: 150,
               height: 50,

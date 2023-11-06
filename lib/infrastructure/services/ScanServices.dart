@@ -28,20 +28,25 @@ void scanAndAdd(BarcodeCapture onDetect, BuildContext context) async {
       print('Barcode found! ${barcode.displayValue}');
 
       List<CartModel> cartItems = context.read<CartBloc>().state.cartItems;
+      int productUpdateIndex = -1;
+
       if (cartItems.isNotEmpty) {
         for (CartModel value in cartItems) {
           if (value.id.toString() == barcode.displayValue) {
-            context
-                .read<CartBloc>()
-                .add(AddQuantity(index: cartItems.indexOf(value)));
-            showToast("Product Added");
-          } else {
-            CartModel cartItem =
-            await scanProduct(int.parse(barcode.displayValue!));
-        if (cartItem.name.isNotEmpty) {
-          context.read<CartBloc>().add(AddToCart(cartModel: cartItem));
-          showToast("Product Added");
+            productUpdateIndex = cartItems.indexOf(value);
+            break;
+          }
         }
+
+        if (productUpdateIndex > -1) {
+          context.read<CartBloc>().add(AddQuantity(index: productUpdateIndex));
+          showToast("Product Updated");
+        } else {
+          CartModel cartItem =
+              await scanProduct(int.parse(barcode.displayValue!));
+          if (cartItem.name.isNotEmpty) {
+            context.read<CartBloc>().add(AddToCart(cartModel: cartItem));
+            showToast("Product Added");
           }
         }
       } else {
