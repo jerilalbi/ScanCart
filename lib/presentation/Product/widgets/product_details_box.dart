@@ -5,6 +5,7 @@ import 'package:scancart/domain/models/ProductModel.dart';
 import 'package:scancart/infrastructure/services/ProductServices.dart';
 import 'package:scancart/presentation/widgets/Product/Product_row.dart';
 import 'package:scancart/presentation/Product/widgets/product_details_sec.dart';
+import 'package:scancart/presentation/widgets/Shimmer/Product_row_shimmer.dart';
 
 class ProductDescription extends StatelessWidget {
   final String productName;
@@ -40,7 +41,7 @@ class ProductDescription extends StatelessWidget {
             if(snapshot.hasData){
               return ProductRow(title: "Recommended",products: snapshot.data!,);
             }else{
-              return const CircularProgressIndicator();
+              return const ProductRowShimmer();
             }
            }
          ),

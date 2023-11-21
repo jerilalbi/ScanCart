@@ -43,6 +43,7 @@ dependencies:
   firebase_core: ^2.19.0
   flutter_typeahead: ^4.8.0
   fluttertoast: ^8.2.2
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:
