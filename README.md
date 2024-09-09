@@ -27,7 +27,6 @@ ScanCart is a Flutter-based mobile app designed to streamline in-store shopping 
    flutter run
 
 ## Screenshots
-Include screenshots of the app to showcase the features
 
 ### Home Page
 ![scancart1](https://github.com/user-attachments/assets/f540ca92-a839-461b-bebe-8fb6b2ae7e1e)
